@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lainbo.github.io/</id>
-    <title>Gridea</title>
-    <updated>2019-11-29T12:41:34.611Z</updated>
+    <title>Lainbo</title>
+    <updated>2019-11-29T12:41:45.519Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lainbo.github.io/"/>
     <link rel="self" href="https://lainbo.github.io//atom.xml"/>
     <subtitle>温故而知新</subtitle>
     <logo>https://lainbo.github.io//images/avatar.png</logo>
     <icon>https://lainbo.github.io//favicon.ico</icon>
-    <rights>All rights reserved 2019, Gridea</rights>
+    <rights>All rights reserved 2019, Lainbo</rights>
     <entry>
         <title type="html"><![CDATA[流式布局]]></title>
         <id>https://lainbo.github.io//post/liu-shi-bu-ju</id>

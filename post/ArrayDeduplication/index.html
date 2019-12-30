@@ -31,30 +31,24 @@
       
         <div class="animated fadeInLeft" style="animation-delay: 0.4s">
           <p class="my-4 text-gray-600 font-light hidden lg:block">
-            温故而知新
+            文章目录
           </p>
-          <div class="animated fadeInLeft social-container hidden lg:block" style="animation-delay: 0.6s">
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1-%E5%8F%8C%E9%87%8Dfor%E5%BE%AA%E7%8E%AF%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D">1) 双重for循环数组去重</a></li>
+<li><a href="#2-indexof%E6%96%B9%E6%B3%95%E5%8E%BB%E9%87%8D">2) indexOf方法去重</a></li>
+<li><a href="#3-%E7%9B%B8%E9%82%BB%E5%85%83%E7%B4%A0%E5%8E%BB%E9%87%8D">3) 相邻元素去重</a>
+<ul>
+<li><a href="#4-set%E4%B8%8E%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC%E5%8E%BB%E9%87%8D">4) set与解构赋值去重</a></li>
+<li><a href="#5-lodash%E4%B8%80%E6%8A%8A%E6%A2%AD">5) Lodash一把梭😏</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
           </div>
         </div>
       
@@ -98,28 +92,110 @@
 </div>
 <div class="mask" onclick="closeMenu()">
 </div>
-      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4">
-        <h2 class="text-lg text-gray-700 mb-8">
-          <i class="remixicon-bookmark-2-line"></i> 标签云
-        </h2>
-        <div class="tags-container">
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">几种数组去重的方式</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-12-30 / 3 min read
+        </div>
+        
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://s2.ax1x.com/2019/12/30/lMJdb9.jpg" alt="">
+        
+        <div class="post-content yue">
+          <h2 id="1-双重for循环数组去重">1) 双重for循环数组去重</h2>
+<ul>
+<li>双重for循环可以说是一个比较笨重的方法来数组去重，时间复杂度是O(n²)，如果数组很长，他的性能将会很差</li>
+<li>原理：先定义一个包含原始数组第一个元素的数组，然后遍历原始数组，将原始数组中的每个元素与新数组中的每个元素进行比对，如果不重复则添加到新数组中，最后返回新数组</li>
+</ul>
+<pre><code class="language-JavaScript">function unique(arr) {
+  if (!Array.isArray(arr)) {
+    console.log('type error!')
+    return
+  }
+  let res = [arr[0]]
+  for (let i = 1; i &lt; arr.length; i++) {
+    let flag = true
+    for (let j = 0; j &lt; res.length; j++) {
+      if (arr[i] === res[j]) {
+        flag = false;
+        break
+      }
+    }
+    if (flag) {
+      res.push(arr[i])
+    }
+  }
+  return res
+}
+</code></pre>
+<h2 id="2-indexof方法去重">2) indexOf方法去重</h2>
+<ul>
+<li>利用indexOf检测元素在数组中第一次出现的位置是否和元素现在的位置相等，如果不等则说明该元素是重复元素</li>
+<li>还有一种方法是利用indexOf和lastIndexOf，判断这两个是否相等，如果不相等，则该元素是重复元素，这里演示一下第一种方式</li>
+</ul>
+<pre><code class="language-JavaScript">function unique(arr) {
+    if (!Array.isArray(arr)) {
+        console.log('type error!')
+        return
+    }
+    return Array.prototype.filter.call(arr, function(item, index){
+        return arr.indexOf(item) === index;
+    });
+}
+</code></pre>
+<h2 id="3-相邻元素去重">3) 相邻元素去重</h2>
+<ul>
+<li>这种方法首先调用了数组的排序方法sort()，然后根据排序后的结果进行遍历及相邻元素比对，如果相等则跳过改元素，直到遍历结束</li>
+</ul>
+<pre><code class="language-JavaScript">function unique(arr) {
+    if (!Array.isArray(arr)) {
+        console.log('type error!')
+        return
+    }
+    arr = arr.sort()
+    let res = []
+    for (let i = 0; i &lt; arr.length; i++) {
+        if (arr[i] !== arr[i-1]) {
+            res.push(arr[i])
+        }
+    }
+    return res
+}
+</code></pre>
+<h3 id="4-set与解构赋值去重">4) set与解构赋值去重</h3>
+<p>ES6中新增了数据类型set，set的一个最大的特点就是数据不重复。Set函数可以接受一个数组（或类数组对象）作为参数来初始化，利用该特性也能做到给数组去重</p>
+<pre><code class="language-JavaScript">function unique(arr) {
+    if (!Array.isArray(arr)) {
+        console.log('type error!')
+        return
+    }
+    return [...new Set(arr)] 
+    //这里是使用了...解构，将Set变为一个数组，还可以使用Array.from进行转换
+}
+</code></pre>
+<h3 id="5-lodash一把梭">5) Lodash一把梭😏</h3>
+
+        </div>
+
+        
+
+
+        <div class="flex justify-between py-8">
           
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://lainbo.github.io/tag/VIYtB8VIt" :style="{ 'animation-delay': `${0 * 0.2}s` }">
-              <span class="flex-auto">工具</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
+
           
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://lainbo.github.io/tag/_s2E35aCb" :style="{ 'animation-delay': `${1 * 0.2}s` }">
-              <span class="flex-auto">经验技巧</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://lainbo.github.io/tag/vNG84wAEH" :style="{ 'animation-delay': `${2 * 0.2}s` }">
-              <span class="flex-auto">学习记录</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
+            <div class="next-post">
+              <a href="https://lainbo.github.io/post/jiekoutest">
+                <h3 class="post-title">
+                  可供日常使用的接口
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
           
         </div>
+
+        
+
       </div>
     </div>
 

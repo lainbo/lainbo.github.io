@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lainbo</title>
 <meta name="description" content="温故而知新" />
-<link rel="shortcut icon" href="https://lainbo.github.io//favicon.ico?v=1577677906107">
+<link rel="shortcut icon" href="https://lainbo.github.io//favicon.ico?v=1577682495556">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -24,7 +24,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://lainbo.github.io/">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://lainbo.github.io//images/avatar.png?v=1577677906107" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://lainbo.github.io//images/avatar.png?v=1577682495556" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">Lainbo</h1>
       </div>
@@ -173,6 +173,10 @@
 }
 </code></pre>
 <h3 id="5-lodash一把梭">5) Lodash一把梭😏</h3>
+<p>lodash 如何实现去重<br>
+简单说下 lodash 的 uniq 方法的源码实现。<br>
+这个方法的行为和使用 Set 进行去重的结果一致。<br>
+当数组长度大于等于 200 时，会创建 Set并将 Set 转换为数组来进行去重（Set 不存在情况的实现不做分析）。当数组长度小于 200 时，会使用类似前面提到的 双重循环 的去重方案，另外还会做 NaN 的去重。</p>
 
         </div>
 

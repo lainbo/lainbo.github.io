@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lainbo.github.io/</id>
     <title>Lainbo</title>
-    <updated>2019-12-30T03:49:29.106Z</updated>
+    <updated>2019-12-30T03:51:51.636Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lainbo.github.io/"/>
     <link rel="self" href="https://lainbo.github.io/atom.xml"/>
@@ -10,86 +10,6 @@
     <logo>https://lainbo.github.io/images/avatar.png</logo>
     <icon>https://lainbo.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, Lainbo</rights>
-    <entry>
-        <title type="html"><![CDATA[几种数组去重的方式]]></title>
-        <id>https://lainbo.github.io/post/ArrayDeduplication</id>
-        <link href="https://lainbo.github.io/post/ArrayDeduplication">
-        </link>
-        <updated>2019-12-30T03:47:00.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="1-双重for循环数组去重">1) 双重for循环数组去重</h2>
-<ul>
-<li>双重for循环可以说是一个比较笨重的方法来数组去重，时间复杂度是O(n²)，如果数组很长，他的性能将会很差</li>
-<li>原理：先定义一个包含原始数组第一个元素的数组，然后遍历原始数组，将原始数组中的每个元素与新数组中的每个元素进行比对，如果不重复则添加到新数组中，最后返回新数组</li>
-</ul>
-<pre><code class="language-JavaScript">function unique(arr) {
-  if (!Array.isArray(arr)) {
-    console.log('type error!')
-    return
-  }
-  let res = [arr[0]]
-  for (let i = 1; i &lt; arr.length; i++) {
-    let flag = true
-    for (let j = 0; j &lt; res.length; j++) {
-      if (arr[i] === res[j]) {
-        flag = false;
-        break
-      }
-    }
-    if (flag) {
-      res.push(arr[i])
-    }
-  }
-  return res
-}
-</code></pre>
-<h2 id="2-indexof方法去重">2) indexOf方法去重</h2>
-<ul>
-<li>利用indexOf检测元素在数组中第一次出现的位置是否和元素现在的位置相等，如果不等则说明该元素是重复元素</li>
-<li>还有一种方法是利用indexOf和lastIndexOf，判断这两个是否相等，如果不相等，则该元素是重复元素，这里演示一下第一种方式</li>
-</ul>
-<pre><code class="language-JavaScript">function unique(arr) {
-    if (!Array.isArray(arr)) {
-        console.log('type error!')
-        return
-    }
-    return Array.prototype.filter.call(arr, function(item, index){
-        return arr.indexOf(item) === index;
-    });
-}
-</code></pre>
-<h2 id="3-相邻元素去重">3) 相邻元素去重</h2>
-<ul>
-<li>这种方法首先调用了数组的排序方法sort()，然后根据排序后的结果进行遍历及相邻元素比对，如果相等则跳过改元素，直到遍历结束</li>
-</ul>
-<pre><code class="language-JavaScript">function unique(arr) {
-    if (!Array.isArray(arr)) {
-        console.log('type error!')
-        return
-    }
-    arr = arr.sort()
-    let res = []
-    for (let i = 0; i &lt; arr.length; i++) {
-        if (arr[i] !== arr[i-1]) {
-            res.push(arr[i])
-        }
-    }
-    return res
-}
-</code></pre>
-<h3 id="4-set与解构赋值去重">4) set与解构赋值去重</h3>
-<p>ES6中新增了数据类型set，set的一个最大的特点就是数据不重复。Set函数可以接受一个数组（或类数组对象）作为参数来初始化，利用该特性也能做到给数组去重</p>
-<pre><code class="language-JavaScript">function unique(arr) {
-    if (!Array.isArray(arr)) {
-        console.log('type error!')
-        return
-    }
-    return [...new Set(arr)] 
-    //这里是使用了...解构，将Set变为一个数组，还可以使用Array.from进行转换
-}
-</code></pre>
-<h3 id="5-lodash一把梭">5) Lodash一把梭😏</h3>
-]]></content>
-    </entry>
     <entry>
         <title type="html"><![CDATA[可供日常使用的接口]]></title>
         <id>https://lainbo.github.io/post/jiekoutest</id>
@@ -617,6 +537,86 @@ console.log(iterator.next()); // Object {value: undefined, done: false}
 <pre><code class="language-JavaScript">[...Array(10).keys()]; // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 [...new Array(10).keys()]; // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 </code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[几种数组去重的方式]]></title>
+        <id>https://lainbo.github.io/post/ArrayDeduplication</id>
+        <link href="https://lainbo.github.io/post/ArrayDeduplication">
+        </link>
+        <updated>2018-01-10T12:47:00.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="1-双重for循环数组去重">1) 双重for循环数组去重</h2>
+<ul>
+<li>双重for循环可以说是一个比较笨重的方法来数组去重，时间复杂度是O(n²)，如果数组很长，他的性能将会很差</li>
+<li>原理：先定义一个包含原始数组第一个元素的数组，然后遍历原始数组，将原始数组中的每个元素与新数组中的每个元素进行比对，如果不重复则添加到新数组中，最后返回新数组</li>
+</ul>
+<pre><code class="language-JavaScript">function unique(arr) {
+  if (!Array.isArray(arr)) {
+    console.log('type error!')
+    return
+  }
+  let res = [arr[0]]
+  for (let i = 1; i &lt; arr.length; i++) {
+    let flag = true
+    for (let j = 0; j &lt; res.length; j++) {
+      if (arr[i] === res[j]) {
+        flag = false;
+        break
+      }
+    }
+    if (flag) {
+      res.push(arr[i])
+    }
+  }
+  return res
+}
+</code></pre>
+<h2 id="2-indexof方法去重">2) indexOf方法去重</h2>
+<ul>
+<li>利用indexOf检测元素在数组中第一次出现的位置是否和元素现在的位置相等，如果不等则说明该元素是重复元素</li>
+<li>还有一种方法是利用indexOf和lastIndexOf，判断这两个是否相等，如果不相等，则该元素是重复元素，这里演示一下第一种方式</li>
+</ul>
+<pre><code class="language-JavaScript">function unique(arr) {
+    if (!Array.isArray(arr)) {
+        console.log('type error!')
+        return
+    }
+    return Array.prototype.filter.call(arr, function(item, index){
+        return arr.indexOf(item) === index;
+    });
+}
+</code></pre>
+<h2 id="3-相邻元素去重">3) 相邻元素去重</h2>
+<ul>
+<li>这种方法首先调用了数组的排序方法sort()，然后根据排序后的结果进行遍历及相邻元素比对，如果相等则跳过改元素，直到遍历结束</li>
+</ul>
+<pre><code class="language-JavaScript">function unique(arr) {
+    if (!Array.isArray(arr)) {
+        console.log('type error!')
+        return
+    }
+    arr = arr.sort()
+    let res = []
+    for (let i = 0; i &lt; arr.length; i++) {
+        if (arr[i] !== arr[i-1]) {
+            res.push(arr[i])
+        }
+    }
+    return res
+}
+</code></pre>
+<h3 id="4-set与解构赋值去重">4) set与解构赋值去重</h3>
+<p>ES6中新增了数据类型set，set的一个最大的特点就是数据不重复。Set函数可以接受一个数组（或类数组对象）作为参数来初始化，利用该特性也能做到给数组去重</p>
+<pre><code class="language-JavaScript">function unique(arr) {
+    if (!Array.isArray(arr)) {
+        console.log('type error!')
+        return
+    }
+    return [...new Set(arr)] 
+    //这里是使用了...解构，将Set变为一个数组，还可以使用Array.from进行转换
+}
+</code></pre>
+<h3 id="5-lodash一把梭">5) Lodash一把梭😏</h3>
 ]]></content>
     </entry>
 </feed>

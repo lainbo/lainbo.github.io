@@ -2,14 +2,14 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lainbo.github.io/</id>
     <title>Lainbo</title>
-    <updated>2019-12-31T07:46:33.684Z</updated>
+    <updated>2020-01-01T07:30:48.338Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lainbo.github.io/"/>
     <link rel="self" href="https://lainbo.github.io/atom.xml"/>
     <subtitle>温故而知新</subtitle>
     <logo>https://lainbo.github.io/images/avatar.png</logo>
     <icon>https://lainbo.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2019, Lainbo</rights>
+    <rights>All rights reserved 2020, Lainbo</rights>
     <entry>
         <title type="html"><![CDATA[可供日常使用的接口]]></title>
         <id>https://lainbo.github.io/post/jiekoutest</id>
